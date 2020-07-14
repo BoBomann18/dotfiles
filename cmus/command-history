@@ -1,0 +1,28 @@
+q
+colorscheme terminal
+vol +10%
+vol +50
+vol unmute
+vol 1
+vol 100
+vol 50
+vol 20
+pl-create=test
+pl-create test
+quit
+colorscheme terminal.theme
+set color_win_bg=-1
+set color_win_bg=darkgray
+set color_win_bg=darkgrey
+set color_win_bg=20
+set color_win_bg=70
+set color_win_bg=blue
+set color_win_bg=bluegrey
+set color_win_bg=#404552
+colorscheme arc-dark
+save
+add ~/Musik/
+add ~/Musik
+help
+next
+colorscheme screenshot
