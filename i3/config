@@ -6,7 +6,7 @@
 #
 
 # i3 config file (v4)
-#
+#A
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
@@ -30,7 +30,7 @@ font pango:System San Francisco Display 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal --hide-menubar
+bindsym $mod+Return exec gnome-terminal --hide-menubar 
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -40,7 +40,7 @@ bindsym $mod+Shift+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop 
 
 # change focus
 bindsym $mod+j focus left
@@ -164,11 +164,12 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $bg-color             #2f343f
-set $inactive-bg-color    #2f343f
-set $text-color           #f3f4f5
-set $inactive-text-color  #676E7D
-set $urgent-bg-color      #E53935
+
+set $bg-color             #0F1321
+set $inactive-bg-color    #0F1321
+set $text-color           #75A39A
+set $inactive-text-color  #9AAB9C
+set $urgent-bg-color      #B9B297
 
 # Window Colors
 # 		 	                border				background			text					indicator
@@ -202,9 +203,12 @@ bar {
 bindsym $mod+shift+x exec ~/.scripts/i3lock.sh
 bindsym $mod+shift+h exec "i3-nagbar -t warning -m 'You pressed the shutdown shortcut. Do you really want to shutdown?' -B 'Yes, shutdown' 'shutdown -h 0'"
 
+# theme with wal
+exec wal -R
+
 # startup applications
 exec firefox
-exec gnome-terminal
+exec gnome-terminal --hide-menubar 
 
 # screeshot
 bindsym $mod+p exec scrot -e 'mv $f ~/Bilder/Screenshots'
@@ -216,13 +220,22 @@ bindsym $mod+p exec scrot -e 'mv $f ~/Bilder/Screenshots'
 exec_always feh --bg-scale /home/cesar/Bilder/Hintergrundbilder/welle_schiff.jpg
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# amixer
+#bindsym XF86AudioRaiseVolume exec amixer -c 1 set Master playback 5dB+ 
+#bindsym XF86AudioRaiseVolume exec amixer -c 1 set Master playback 5dB- 
+#bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle
+
+# pactl
+#increase sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5%
+# lower volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% 
+# mute toggle
+bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -display eDP -dec 20% # decrease screen brightness
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
